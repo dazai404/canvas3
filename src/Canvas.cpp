@@ -83,3 +83,11 @@ void Canvas::delete_polygon(int i) {
 void Canvas::delete_ellipse(int i) {
     ellipses.erase(ellipses.begin() + i);
 }
+
+void Canvas::clear() {
+    points.clear();
+    lines.clear();
+    rectangles.clear();
+    polygons.clear();
+    ellipses.clear();
+}

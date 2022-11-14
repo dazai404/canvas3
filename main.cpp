@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include <unistd.h>
 
 #include "include/Point.h"
 #include "include/Line.h"
@@ -503,8 +504,122 @@ void menu_remove_ellipse(Canvas *canvas) {
     std::cout << "----- SUCCESS -----\n\n";
 }
 
+void menu_clear_list(Canvas *canvas) {
+    std::cout << "----- CLEARING A LIST -----\n";
+    canvas->clear();        
+    std::cout << "----- SUCCESS -----\n";
+}
+
+void menu_create_shape(Canvas* canvas) {
+    std::cout << "----- CREATING A SHAPE -----\n\n";
+    std::cout << "0. Exit\n1. Create a point\n2. Create a line\n3. Create a rectangle\n4. Create a polygon\n5. Create an ellipse\n\nSelect a command\n";
+    int num;
+    bool flag = true;
+    while (flag) {
+        std::cout <<">";
+        std::cin >> num;
+        switch (num) {
+            case 0:
+                flag = false;
+                break;
+            case 1:
+                menu_create_point(canvas);
+                flag = false;
+                break;
+            case 2:
+                menu_create_line(canvas);
+                flag = false;
+                break;
+            case 3:
+                menu_create_rectangle(canvas);
+                flag = false;
+                break;
+            case 4:
+                menu_create_polygon(canvas);
+                flag = false;
+                break;
+            case 5:
+                menu_create_ellipse(canvas);
+                flag = false;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void menu_remove_shape(Canvas* canvas) {
+    std::cout << "----- REMOVING A SHAPE -----\n";
+    std::cout << "0. Exit\n1. Remove a point\n2. Remove a line\n3. Remove a rectangle\n4. Remove a polygon\n5. Remove an ellipse\n\nSelect a command\n";
+    int num;
+    bool flag = true;
+    while (flag) {
+        std::cout <<">";
+        std::cin >> num;
+        switch (num) {
+            case 1:
+                menu_remove_point(canvas);
+                flag = false;
+                break;
+            case 2:
+                menu_remove_line(canvas);
+                flag = false;
+                break;
+            case 3:
+                menu_remove_rectangle(canvas);
+                flag = false;
+                break;
+            case 4:
+                menu_remove_polygon(canvas);
+                flag = false;
+                break;
+            case 5:
+                menu_remove_ellipse(canvas);
+                flag = false;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void menu_render_shape(Canvas* canvas) {
+    std::cout << "----- RENDERING A SHAPE -----\n";
+    std::cout << "0. Exit\n1. Render a point\n2. Render a line\n3. Render a rectangle\n4. Render a polygon\n5. Render an ellipse\n\nSelect a command\n";
+    int num;
+    bool flag = true;
+    while (flag) {
+        std::cout <<">";
+        std::cin >> num;
+        switch (num) {
+            case 1:
+                menu_render_point(*canvas);
+                flag = false;
+                break;
+            case 2:
+                menu_render_line(*canvas);
+                flag = false;
+                break;
+            case 3:
+                menu_render_rectangle(*canvas);
+                flag = false;
+                break;
+            case 4:
+                menu_render_polygon(*canvas);
+                flag = false;
+                break;
+            case 5:
+                menu_render_ellipse(*canvas);
+                flag = false;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 int menu() {
-    std::cout << "0. Exit\n1. Create a point\n2. Create a line\n3. Create a rectangle\n4. Create a polygon\n5. Create an ellipse\n6. Show list\n7. Render a point\n8. Render a line\n9. Render a rectangle\n10. Render a polygon\n11. Render an ellipse\n12. Remove a point\n13. Remove a line\n14. Remove a rectangle\n15. Remove a polygon\n16. Remove an ellipse\n\nSelect a command\n> ";
+    std::cout << "0. Exit\n1. Show list\n2. Clear a list\n3. Create a shape\n4. Remove a shape\n5. Render a shape\n\nSelect a command\n> ";
     int num;
     std::cin >> num;
     return num;
@@ -513,60 +628,29 @@ int menu() {
 int main() {
     std::cout << "----- WELCOME -----\n\n";
     Canvas canvas;
-    bool flag = true;
-    while (flag) {
+    bool flag1 = true;
+    bool flag2 = false;
+    while (flag1) {
+        sleep(1);
         switch (menu()) {
             case 0:
                 std::cout << "----- SEE YA -----\n";
-                flag = false;
+                flag1 = false;
                 break;
             case 1:
-                menu_create_point(&canvas);
-                break;
-            case 2:
-                menu_create_line(&canvas);
-                break;
-            case 3:
-                menu_create_rectangle(&canvas);
-                break;
-            case 4:
-                menu_create_polygon(&canvas);
-                break;
-            case 5:
-                menu_create_ellipse(&canvas);
-                break;
-            case 6:
                 menu_get_info(canvas);
                 break;
-            case 7:
-                menu_render_point(canvas);
+            case 2:
+                menu_clear_list(&canvas);
                 break;
-            case 8:
-                menu_render_line(canvas);
+            case 3:
+                menu_create_shape(&canvas);
                 break;
-            case 9:
-                menu_render_rectangle(canvas);
+            case 4:
+                menu_remove_shape(&canvas);
                 break;
-            case 10:
-                menu_render_polygon(canvas);
-                break;
-            case 11:
-                menu_render_ellipse(canvas);
-                break;
-            case 12:
-                menu_remove_point(&canvas);
-                break;
-            case 13:
-                menu_remove_line(&canvas);
-                break;
-            case 14:
-                menu_remove_rectangle(&canvas);
-                break;
-            case 15:
-                menu_remove_polygon(&canvas);
-                break;
-            case 16:
-                menu_remove_ellipse(&canvas);
+            case 5:
+                menu_render_shape(&canvas);
                 break;
             default:
                 break;

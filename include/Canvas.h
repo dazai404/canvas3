@@ -42,6 +42,7 @@ public:
     void delete_rectangle(int i);
     void delete_polygon(int i);
     void delete_ellipse(int i);
+    void clear();
 };
 
 
